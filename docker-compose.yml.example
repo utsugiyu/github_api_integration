@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: $DATABASE_PASSWORD
+      MYSQL_DATABASE: $DATABASE_USERNAME
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+
+  web:
+    build: .
+    command: >
+      bash -c 
+      "bundle install && 
+      rm -f tmp/pids/server.pid && 
+      bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/github_api_integration
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
