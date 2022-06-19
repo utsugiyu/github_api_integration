@@ -32,4 +32,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'rubocop-rspec', require: false
+  gem 'webmock', require: false
+  gem 'faker'
 end
